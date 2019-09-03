@@ -10,7 +10,6 @@ namespace FizzBuzz
     {
         Range,
         SingleValue,
-        Exit,
-        None
+        Exit
     }
 }

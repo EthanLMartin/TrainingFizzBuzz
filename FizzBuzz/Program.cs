@@ -13,29 +13,36 @@ namespace FizzBuzz
             PromptHandlerClass promptHandler = new PromptHandlerClass();
             while (true)
             {
-                int min = 1;
-                int max = -1;
                 UserChoice selection = promptHandler.PromptSelection();
-                if (selection == UserChoice.Exit)
-                {
-                    return;
-                } else if (selection == UserChoice.Range)
-                {
-                    min = promptHandler.PromptNumber("Select a minimum number");
-                    max = promptHandler.PromptNumber("Select a maximum number");
-                } else if (selection == UserChoice.SingleValue)
-                {
-                    min = max = promptHandler.PromptNumber("Select a number");
-                }
-                Console.WriteLine("------------");
 
-                for (int number = min; number <= max; number++)
+                switch (selection)
                 {
-                    string result = BuildString(number);
-                    Console.WriteLine(result);
+                    case UserChoice.Exit:
+                        return;
+                    case UserChoice.Range:
+                        MainLoop(
+                            promptHandler.PromptNumber("Select a minimum number"),
+                            promptHandler.PromptNumber("Select a maximum number")
+                        );
+                        break;
+                    case UserChoice.SingleValue:
+                        int choice = promptHandler.PromptNumber("Select a number");
+                        MainLoop(choice, choice);
+                        break;
                 }
-                Console.WriteLine("------------");
             }
+        }
+
+        static void MainLoop(int min, int max)
+        {
+            Console.WriteLine("------------");
+
+            for (int number = min; number <= max; number++)
+            {
+                string result = BuildString(number);
+                Console.WriteLine(result);
+            }
+            Console.WriteLine("------------");
         }
 
         static string BuildString(int number)

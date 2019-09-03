@@ -32,6 +32,7 @@ namespace FizzBuzz
                 }
             }
         }
+
         public int PromptNumber(string message)
         {
             bool validSelection = false;
