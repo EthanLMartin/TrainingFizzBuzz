@@ -14,15 +14,15 @@ namespace FizzBuzz
             {
                 int min = 1;
                 int max = -1;
-                string selection = PromptSelection();
-                if (selection == "Q")
+                UserChoice selection = PromptSelection();
+                if (selection == UserChoice.Exit)
                 {
                     return;
-                } else if (selection == "1")
+                } else if (selection == UserChoice.Range)
                 {
                     min = PromptNumber("Select a minimum number");
                     max = PromptNumber("Select a maximum number");
-                } else if (selection == "2")
+                } else if (selection == UserChoice.SingleValue)
                 {
                     min = max = PromptNumber("Select a number");
                 }
@@ -57,19 +57,27 @@ namespace FizzBuzz
             return result;
         }
 
-        static string PromptSelection()
+        static UserChoice PromptSelection()
         {
             bool validSelection = false;
-            string selection = "";
+            UserChoice selection = UserChoice.None;
             while (!validSelection)
             {
-                Console.WriteLine("Type \"1\" for range, \"2\" for singular value, \"Q\" to exit");
-                selection = Console.ReadLine();
-                if (selection == "1" || selection == "2")
+                Console.WriteLine("Type \"1\" for range, \"2\" for singular value, \"3\" to exit");
+                string input = Console.ReadLine();
+                validSelection = true;
+                if (input == "1")
                 {
-                    validSelection = true;
+                    selection = UserChoice.Range;
+                } else if (input == "2")
+                {
+                    selection = UserChoice.SingleValue;
+                } else if (input == "Q")
+                {
+                    selection = UserChoice.Exit;
                 } else
                 {
+                    validSelection = false;
                     Console.WriteLine("Invalid selection, please try again.");
                 }
             }
