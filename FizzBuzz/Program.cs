@@ -21,6 +21,7 @@ namespace FizzBuzz
         static string BuildString(int number)
         {
             List<string> codes = new List<string>();
+
             if (IsDivisibleBy(number, 3))
             {
                 codes.Add("Fizz");
@@ -40,7 +41,13 @@ namespace FizzBuzz
             }
             if (IsDivisibleBy(number, 11))
             {
-                return "Bong";
+                string earlyResult = "";
+                if (codes.Contains("Fezz"))
+                {
+                    earlyResult += "Fezz";
+                }
+                earlyResult += "Bong";
+                return earlyResult;
             }
             if (IsDivisibleBy(number, 17))
             {
