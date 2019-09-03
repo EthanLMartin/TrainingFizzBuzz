@@ -63,7 +63,7 @@ namespace FizzBuzz
             UserChoice selection = UserChoice.None;
             while (!validSelection)
             {
-                Console.WriteLine("Type \"1\" for range, \"2\" for singular value, \"3\" to exit");
+                Console.WriteLine("Type \"1\" for range, \"2\" for singular value, \"Q\" to exit");
                 string input = Console.ReadLine();
                 validSelection = true;
                 if (input == "1")
